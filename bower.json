@@ -1,0 +1,14 @@
+{
+	"name": "load-css",
+	"version": "0.1.0-dev",
+	"dependencies": {
+		"requirejs": "2.1.x",
+		"requirejs-domready":"",
+		"dcl": "1.1.x"
+
+	},
+	"ignore": [
+		".jshintrc",
+		".gitattributes"
+	]
+}

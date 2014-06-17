@@ -6,11 +6,15 @@
 	<script>
 		require([
 			"app/MyModule",
-			"requirejs/domReady!"
+			"requirejs-domready/domReady!"
 		], function(MyModule) {
 			/*
 			Chrome W7: wait:ok
 			FF 29 W7: wait ok
+			IE11 wait: ok
+			IE10 wait: ok
+			IE9 wait: ok
+
 			Safari 7.0.6/MacOSX: wait: ok
 			Safari iOS 7.1.1 wait: ok
 			Safari iOS 7.0 wait: ok
@@ -22,9 +26,6 @@
 			Android 4.4.2/HTCOne/ Stock Browser: wait ok
 
 			WP8/IE10: wait: ok
-			IE11 wait: ok
-			IE10 wait: ok
-			IE9 wait: ok
 
 
 			*/

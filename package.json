@@ -1,0 +1,13 @@
+{
+	"name": "load-css",
+	"version": "0.1.0-dev",
+	"devDependencies": {
+		"mime": ""
+	},
+	"licenses": [
+		{
+			"type": "~1.2.11",
+			"url": "https://github.com/ibm-js/deliteful/blob/master/LICENSE"
+		}
+	]
+}

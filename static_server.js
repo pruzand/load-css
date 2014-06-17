@@ -29,16 +29,16 @@ http.createServer(function(request, response) {
 					response.end();
 					return;
 				}
-				response.writeHead(200, {"Content-Type":mime.lookup(filename)});
+				response.writeHead(200, {"Content-Type": mime.lookup(filename)});
 				response.write(file, "binary");
 				response.end();
 			});
 		}
 
 		if(/.css.js/.test(filename)){
-			console.log("Delayed for " + filename);
+			console.log("Delaying " + filename + "...");
 			setTimeout(function(){
-				console.log("sverving " + filename);
+				console.log("Serving " + filename);
 				f();
 			}, 5000);
 		} else {
