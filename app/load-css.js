@@ -88,15 +88,14 @@ define([], function(){
 		cache = typeof _css_cache == 'undefined' ? {} : _css_cache,
 		undef,
 		features = {
-			'event-link-onload': document.createElement('link').onload === null ,
+			'event-link-onload': document.createElement('link').onload === null
 				// safari lies about the onload event
-				//&& !navigator.userAgent.match(/AppleWebKit/),
+				// PR: needed for Android Stock Browser...
+				&& !navigator.userAgent.match(/AppleWebKit/),
 			'dom-create-style-element': !document.createStyleSheet
 		},
 		// find the head element and set it to it's standard property if nec.
 		head = doc.head || (doc.head = doc.getElementsByTagName('head')[0]);
-
-    console.log("features: " + JSON.stringify(features));
 
 	function has (feature) {
 		return features[feature];
@@ -202,7 +201,6 @@ define([], function(){
 			}
 			loadHandler(params, cbOnce);
 			if (!has('event-link-onload')) {
-                console.log("no event-link-onload");
 				ssWatcher(params, cbOnce);
 			}
 		
