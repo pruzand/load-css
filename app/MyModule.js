@@ -1,6 +1,7 @@
 define([
 	"dcl/dcl",
-	"./load-css!./simple.css"
+    "./load-css!./simple.css",
+    "./load-css!./simple2.css"
 ], function(dcl){
 		return dcl(null, {
 			constructor: function(){

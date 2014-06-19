@@ -88,13 +88,15 @@ define([], function(){
 		cache = typeof _css_cache == 'undefined' ? {} : _css_cache,
 		undef,
 		features = {
-			'event-link-onload': document.createElement('link').onload === null &&
+			'event-link-onload': document.createElement('link').onload === null ,
 				// safari lies about the onload event
-				!navigator.userAgent.match(/AppleWebKit/),
+				//&& !navigator.userAgent.match(/AppleWebKit/),
 			'dom-create-style-element': !document.createStyleSheet
 		},
 		// find the head element and set it to it's standard property if nec.
 		head = doc.head || (doc.head = doc.getElementsByTagName('head')[0]);
+
+    console.log("features: " + JSON.stringify(features));
 
 	function has (feature) {
 		return features[feature];
@@ -200,6 +202,7 @@ define([], function(){
 			}
 			loadHandler(params, cbOnce);
 			if (!has('event-link-onload')) {
+                console.log("no event-link-onload");
 				ssWatcher(params, cbOnce);
 			}
 		
@@ -277,56 +280,4 @@ define([], function(){
 				}
 			}
 	};
-//	return function (resourceDef, callback, config) {
-//				var resources = resourceDef.split(','),
-//					loadingCount = resources.length,
-//
-//				// all detector functions must ensure that this function only gets
-//				// called once per stylesheet!
-//				loaded = function () {
-//					// load/error handler may have executed before stylesheet is
-//					// fully parsed / processed in Opera, so use setTimeout.
-//					// Opera will process before the it next enters the event loop
-//					// (so 0 msec is enough time).
-//					if(--loadingCount == 0){
-//						// TODO: move this setTimeout to loadHandler
-//						callback(link.sheet || link.styleSheet);
-//						// TODO: Is this need for Opera?
-//						//setTimeout(onCssLoaded,0);
-//					}
-//				};
-//
-//				// after will become truthy once the loop executes a second time
-//				for(var i = 0, after; i < resources.length; i++, after = url){
-//					resourceDef = resources[i];
-//					var cached = cache[resourceDef];
-//					if(cached){
-//						link = insertCss(cached);
-//						return loaded();
-//					}
-//					var
-//						// TODO: this is a bit weird: find a better way to extract name?
-//						opts = parseSuffixes(resourceDef),
-//						name = opts.shift(),
-//						url = nameWithExt(name, 'css'),
-//						link = createLink(doc),
-//						nowait = 'nowait' in opts ? opts.nowait != 'false' : !!(config && config.cssDeferLoad),
-//						params = {
-//							link: link,
-//							url: url,
-//							wait: config && config.cssWatchPeriod || 25
-//						};
-//					// hook up load detector(s)
-//					loadDetector(params, loaded);
-//					if (nowait) {
-//						callback(link);
-//					}
-//
-//					// go!
-//					link.href = url;
-//
-//					head.appendChild(link);
-//				}
-//			};
-
 });
