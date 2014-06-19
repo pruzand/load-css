@@ -35,7 +35,7 @@ http.createServer(function(request, response) {
 			});
 		}
 
-		if(/.css.js/.test(filename)){
+		if(/\.css/.test(filename)){
 			console.log("Delaying " + filename + "...");
 			setTimeout(function(){
 				console.log("Serving " + filename);
