@@ -75,10 +75,10 @@ define([
 		head = document && (document.head || document.getElementsByTagName("head")[0]);
 
 	has.add("event-link-onload", function (global) {
+		var wk = navigator.userAgent.match(/AppleWebKit\/([\d.]+)/);
 		return global.document && global.document.createElement("link").onload === null
-			// safari lies about the onload event
-			// PR: needed for Android Stock Browser...
-			//&& !navigator.userAgent.match(/AppleWebKit/);
+			// PR: needed for webkit browser (actually Android Stock Browser...)
+			&& wk && (parseInt(wk[1])>535);
 	});
 
 	console.log("has(event-link-onload): " + has("event-link-onload"));
