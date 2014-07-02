@@ -78,7 +78,7 @@ define([
 		var wk = navigator.userAgent.match(/AppleWebKit\/([\d.]+)/);
 		return global.document && global.document.createElement("link").onload === null
 			// PR: needed for webkit browser (actually Android Stock Browser...)
-			&& wk && (parseInt(wk[1])>535);
+			&& (!wk || parseInt(wk[1], 10) > 535);
 	});
 
 	console.log("has(event-link-onload): " + has("event-link-onload"));
