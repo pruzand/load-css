@@ -4,10 +4,25 @@
 	<meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,minimum-scale=1,user-scalable=no"/>
 	<script src="./requirejs/require.js"></script>
 	<script>
+
+		console.log = function(msg) {
+			var cons = document.getElementById("cons");
+			var content = cons.innerHTML;
+			content += msg + "<br/>";
+			cons.innerHTML = content;
+		}
+
+		function doIt(){
+			require(["app/MyModule3"], function(MyModule3){
+				new MyModule3();
+			});
+		}
+
 		require([
 			"app/MyModule",
+			"app/MyModule2",
 			"requirejs-domready/domReady!"
-		], function(MyModule) {
+		], function(MyModule, MyModule2) {
 			/*
 			Chrome W7: wait:ok
 			FF 29 W7: wait ok
@@ -26,17 +41,39 @@
 			Android 4.4.2/HTCOne/ Stock Browser: wait ok
 
 			WP8/IE10: wait: ok
-
-
 			*/
 
+			/*
+			 * onload tests:
+
+			 S5/Stock Browser/ WebKit 537.36: Y
+			 S4 4.2.2/Stock Browser/ WebKit 535.19: N
+			 S3Mini 4.1.2/Stock Browser/ WebKit 534.30: N
+			 S3M 4.3/Stock Browser/ WebKit 534.30: N
+			 Galaxy Tab 4.2.2/Stock Browser/ WebKit 534.30: N
+			 HTC One 4.4.2 / Stock Browser / WebKit 534.30 N
+
+			 iPhone iOS 7.0.6 / WebKit 537.51 Y
+			 iPad iOS 6.1.3 / WebKit 536.26 Y
+			 iPad iOS 6 / WebKit 534.46 N
+			 WP8/IE10: Y
+
+			 */
+
 			new MyModule();
+			new MyModule2();
+			document.querySelector("button").disabled = false;
 		})
 	</script>
 
-
+	<style>
+		#cons {
+			width:100%;
+		}
+	</style>
 <body>
 
-
+<button onclick="doIt();" disabled="true">Load Module3</button>
+<div id="cons"></div>
 </body>
 </html>
